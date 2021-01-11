@@ -1,0 +1,36 @@
+{% import "elements.twig" as elements %}
+{% block content %}
+    <li class="lx-box" uk-scrollspy="cls: uk-animation-fade; target: a; delay: 300; repeat: true">
+        <div class="lx-box-in uk-overflow-hidden uk-position-relative post-new">
+            {%- if post.thumbnail.src -%}
+                <div class="uk-text-center">
+                    <a href="{{ post.link }}" title="{{ post.title }}" class="lx-link">
+                        <div class="uk-inline-clip uk-transition-toggle uk-light uk-overflow-hidden min-100">
+                            <img class="min-100 responsive-img uk-transition-scale-up uk-transition-opaque"
+                                 src="{{ post.thumbnail.src }}" alt="{{ post.title }}"/>
+                            <div class="uk-position-center">
+                                <span class="uk-transition-fade" uk-icon="icon: plus; ratio: 2"></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endif %}
+            <a href="{{ post.link }}" title="{{ post.title }}" class="lx-link">
+                <div>
+                    <div style="padding:15px">
+                        <{{ tag|default('h2') }} class="uk-text-center
+                        uk-text-uppercase">{{ post.title }}</{{ tag|default('h2') }}>
+                    {% include template_from_string(post.post_excerpt|excerpt(25)) %}
+                    <div class="post-author">
+                        <div uk-grid>
+                            {{ elements.avatar(post, true) }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </li>
+{% endblock %}
+
+
+

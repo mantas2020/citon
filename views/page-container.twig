@@ -1,0 +1,11 @@
+{% extends "base.twig" %}
+{% block content %}
+    <div class="uk-container">
+        {% include 'page-container-template.twig' %}
+        {% if page_by_id %}
+            {% for page in page_by_id %}
+                {% include page.custom_template with {scrollspy:'cls: uk-animation-fade; repeat: true', post: page} %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

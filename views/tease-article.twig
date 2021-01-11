@@ -1,0 +1,15 @@
+{% block content %}
+    <article>
+        <h2 class="uk-heading-line uk-text-left"><span>{{ post.title }}</span></h2>
+        {% if post.post_type == 'post' %}
+            <p class="uk-article-meta">
+                {{ post.post_date|date('Y-m-d') }} | {{ post.terms('category') | join(', ') }}
+            </p>
+        {% else %}
+        {% endif %}
+        {% if post.post_content %}
+            {% include template_from_string(post._metaseo_metadesc|default(post.content)|excerpt(40)) %}
+        {% endif %}
+        <p><a href="{{ post.link }}" class="uk-button uk-button-text btn-more excerpt">{{ __("Read more") }}</a></p>
+    </article>
+{% endblock %}

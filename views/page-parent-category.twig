@@ -1,0 +1,79 @@
+{% extends "base.twig" %}
+    {% block main %}
+		<main>
+			<div class="uk-container">
+				<div uk-grid uk-scrollspy="target: >div; cls:uk-animation-fade; delay: 300; repeat: true">
+					<div class="uk-width-expand@m uk-scrollspy-inview uk-animation-fade">
+						<h1 class="uk-heading-line"><span class="uk-text-uppercase">{{ post.title }}</span></h1>
+					</div>
+					<div class="uk-width-auto@m">
+						<ul class="soc-ico-group">
+							<li>
+								<a href="https://www.facebook.com/sharer/sharer.php?u={{ post.link }}"
+								   title="{{ post.title }}"
+								   target="_blank"><img class="soc-ico"
+														src="/wp-content/themes/luxoriuos/dist/img/facebook-icon-sm.png"
+														alt="{{ post.title }}"/></a>
+							</li>
+							<li>
+								<a href="https://twitter.com/intent/tweet?text={{ post.title }}&url={{ post.link }}"
+								   title="{{ post.title }}"
+								   target="_blank"><img class="soc-ico"
+														src="/wp-content/themes/luxoriuos/dist/img/tweeter-share-small.png"
+														alt="{{ post.title }}"/></a>
+							</li>
+							<li>
+								<a href="https://www.linkedin.com/shareArticle?mini=true&url={{ post.link }}&title={{ post.title }}&summary={{ post.post_excerpt|excerpt(15) }}&amp;source={{ site.url }}"
+								   title="{{ post.title }}"><img class="soc-ico"
+																 src="/wp-content/themes/luxoriuos/dist/img/linkedin-icon.png"
+																 alt="{{ post.title }}"/></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="parent-category-content">
+				{% include template_from_string(post.content) %}
+			</div>
+			{% set parent = post.parent %}
+			{%- if parent.children -%}
+				<div class="uk-container">
+					<h2 class="uk-heading-line uk-text-left"><span class="uk-text-uppercase">Kitos mūsų paslaugos</span>
+					</h2>
+					<div uk-scrollspy="target: >ul; cls:uk-animation-fade; delay: 300; repeat: true">
+						<ul class="parent-accordion" uk-accordion>
+							{% for child in parent.children %}
+								{%- if post.id != child.id -%}
+									<li class="uk-open">
+										<a class="uk-accordion-title uk-position-relative" href="#"><h2
+													class="uk-text-uppercase">{{ child.title }}</h2>
+										</a>
+										<div class="uk-accordion-content">
+											<p>{% include template_from_string(child.post_excerpt|excerpt(30)) %}
+												<a href="{{ child.link }}" title="{{ child.title }}"
+												   uk-icon="arrow-right"></a>
+											</p>
+										</div>
+									</li>
+								{%- endif -%}
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			{%- endif -%}
+			{%- if tags -%}
+				<div class="uk-container tags-content">
+					<div uk-scrollspy="target: >div; cls:uk-animation-fade; delay: 300; repeat: true">
+						<div class="uk-width-1-1@m uk-scrollspy-inview uk-animation-fade">
+							<h3 class="uk-heading-line uk-text-left"><span
+										class="uk-text-uppercase">{{ __("Tags", "custom") }}</span></h3>
+							{%- for tag in tags -%}
+								<a href="/tag/{{ tag.slug }}" rel="tag"
+								   class="tag-links uk-button uk-button-text">{{ tag.name }}</a>{%- if not loop.last -%},&nbsp;{%- endif -%}
+							{%- endfor -%}
+						</div>
+					</div>
+				</div>
+			{%- endif -%}
+		</main>
+	{% endblock %}

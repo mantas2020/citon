@@ -1,0 +1,52 @@
+{% block navigtion %}
+    {%- if primary_menu and primary_menu.name == 'primary-menu' %}
+        <div id="secondary-menu" class="uk-visible@m"
+             uk-sticky="show-on-up:true; animation: uk-animation-slide-top; set-target: #setsticky; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 250; offset: 40">
+            <div id="setsticky">
+                <nav class="cbp-hsmenu-wrapper" id="cbp-hsmenu-wrapper">
+                    <div class="cbp-hsinner accent">
+                        <ul class="cbp-hsmenu">
+                            {% for item in primary_menu.items %}
+                                <li class="nav-main-item {{ item.classes|join(' ') }}">
+                                    {# ICON #}
+                                    {% if item.menu_object.custom['menu-icons'] %}
+                                        <a class="nav-main-link-soc" {% if '__' in item.url %} uk-toggle="target: {{ item.url }}" {% else %}href="{{ item.link }}" {% endif %}>
+                                            {% if item.menu_object.custom['menu-icons'] %}
+                                                <i class="_mi {{ item.menu_object.custom['menu-icons']['type'] }} {{ item.menu_object.custom['menu-icons']['icon'] }}"
+                                                   aria-hidden="true"></i>
+                                            {% else %}
+                                                {{ item.title }}
+                                            {% endif %}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ item.link|default('#') }}"><span
+                                                    class="uk-button uk-button-text">{{ item.title }}</span></a>
+                                        {% if item.children %}
+                                            <ul class="cbp-hssubmenu">
+                                                {% for child in item.children %}
+                                                    {%- if(child.menu_object.thumbnail_id) %}
+                                                        <li>
+                                                            <a href="{{ child.link }}"><img
+                                                                        src="{{ Image(child.menu_object.thumbnail_id).src }}"
+                                                                        alt="{{ child.title }}"/><span
+                                                                        class="uk-button uk-button-text">{{ child.title }}</span></a>
+                                                        </li>
+                                                    {%- else %}
+                                                        <li>
+                                                            <a href="{{ child.link }}"><span
+                                                                        class="uk-button uk-button-text">{{ child.title }}</span></a>
+                                                        </li>
+                                                    {%- endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    {%- endif %}
+{% endblock %}

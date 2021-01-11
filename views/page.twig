@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+{% block content %}
+    <div class="lx-content" uk-margin>
+        <div class="uk-container uk-margin-bottom">
+            <h1 class="uk-heading-line"><span class="uk-text-uppercase">{{ post.title }}</span></h1>
+        </div>
+        {% include template_from_string(post.content) %}
+    </div>
+{% endblock %}

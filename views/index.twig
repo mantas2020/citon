@@ -1,0 +1,45 @@
+{% extends "base.twig" %}
+{% block content %}
+    {%- if fn('is_front_page') -%}
+        {{ slider }}
+    {%- endif -%}
+
+    {%- if posts -%}
+        <div class="uk-container">
+            <div class="lx-content">
+                {%- if fn('is_front_page') -%}
+                    <div class="panel-widget-style uk-margin-bottom">
+                        <div class="so-widget-sow-headline"
+                             uk-scrollspy="cls: uk-animation-slide-top; target: >div; delay: 300; repeat: true">
+                            <div class="sow-headline-container">
+                                <h2 class="sow-headline"
+                                    style="padding-top: 10px;">{{ fn('single_tag_title', '', false)|default('NAUJIENOS') }}</h2>
+                                <div class="decoration"
+                                     style="line-height: 0; text-align: left; margin-top: 20px; margin-bottom: 30px;">
+                                    <div class="decoration-inside"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ elements.column(posts, 'h3', 3) }}
+                    <div class=" uk-heading-line uk-margin-top uk-margin-bottom">
+                        <a href="/naujienos" title="Visos naujienos" class="uk-width-1-1@m uk-text-center lx-btn-more">
+                            VISOS NAUJIENOS
+                        </a>
+                    </div>
+
+                {%- else -%}
+                    <h1 class="uk-text-center uk-text-uppercase uk-margin-top uk-heading-line">
+                        <span>{{ fn('single_tag_title', '', false)|default('NAUJIENOS') }} </span></h1>
+                    <div class="uk-margin-bottom">
+                        {{ elements.column(posts, 'h3', 3) }}
+                    </div>
+                    {% include "pagination.twig" %}
+                {%- endif -%}
+            </div>
+        </div>
+    {%- endif -%}
+    {%- if fn('is_front_page') -%}
+        {{ free }}
+    {%- endif -%}
+{% endblock %}

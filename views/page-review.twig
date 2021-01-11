@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+    {% block content %}
+    <div class="lx-content">
+        <div class="uk-container">
+			{% include template_from_string(post.content) %}	
+			{{ fn('comments_template') }}
+        </div>		 
+    </div>		 
+{% endblock %}

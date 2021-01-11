@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+{% block content %}
+    <div class="uk-container uk-margin-bottom">
+        <div class="so-widget-sow-headline so-widget-sow-headline-default-d95d5e067df8"
+             uk-scrollspy="cls: uk-animation-slide-top; target: >div; delay: 300; repeat: true">
+            <div class="sow-headline-container uk-scrollspy-inview uk-animation-slide-top" style="">
+                <h1 class="sow-headline">{{ post.title|upper }}</h1>
+                <div class="decoration">
+                    <div class="decoration-inside"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%- if post.thumbnail.src -%}
+        <div class="uk-container">
+            <img style="margin:30px 0" class="responsive-img uk-transition-scale-up uk-transition-opaque"
+                 src="{{ post.thumbnail.src }}" alt="{{ post.title }}"/>
+        </div>
+    {%- endif -%}
+    {% include 'page-container-template.twig' %}
+{% endblock %}

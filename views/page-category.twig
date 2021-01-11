@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+    {% block content %}
+        <div class="uk-container uk-margin-bottom">
+            <h1 class="uk-heading-line"><span class="uk-text-uppercase">{{ post.title }}</span></h1>
+        </div>
+        <div class="uk-container uk-margin-bottom">
+            {% include template_from_string(post.content) %}
+        </div>
+        {%- if post.children -%}
+            {%- if post.children|length -%}
+                <div class="uk-container uk-margin-bottom">
+                    <div class="uk-child-width-1-3@m lx-box-ex" uk-grid uk-flex
+                         uk-scrollspy="cls: uk-animation-fade; target: >div; delay: 80; repeat: true">
+                        {%- for child in post.children -%}
+                            <div class="lx-box">
+                                <div class="lx-box-in">
+                                    <a href="{{ child.link }}" title="{{ child.title }}" class="lx-link">
+                                        {%- if child.thumbnail.src -%}
+                                            <div class="uk-text-center">
+                                                <div class="uk-inline-clip uk-transition-toggle uk-light uk-overflow-hidden">
+                                                    <img class="responsive-img uk-transition-scale-up uk-transition-opaque"
+                                                         src="{{ child.thumbnail.src }}" alt="{{ child.title }}"/>
+                                                    <div class="uk-position-center">
+                                                        <span class="uk-transition-fade"
+                                                              uk-icon="icon: plus; ratio: 2"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {%- endif -%}
+                                        <div style="padding:15px">
+                                            <h2 class="uk-text-center uk-text-uppercase">{{ child.title }}</h2>
+                                            <p style="color:black">{% include template_from_string(child.post_excerpt|excerpt(15)) %}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        {%- endfor -%}
+                    </div>
+                </div>
+            {%- endif -%}
+        {%- endif -%}
+    {% endblock %}

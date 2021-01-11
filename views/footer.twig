@@ -1,0 +1,12 @@
+<footer class="page-footer">
+    <div class="uk-block uk-block-secondary uk-contrast">
+        <div class="uk-margin-small-top uk-margin-small-bottom">
+            <div class="uk-text-center lx-footer">
+                {% if copy_right_area %}{{ copy_right_area }}{% endif %}
+				<hr class="uk-divider-icon" />
+                <span class="site-title"> {{ site.title }} | {{ __("All rights reserved","custom") }}
+                    &copy; {{ "now"|date("Y") }}</span>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Development\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-06 06:38+0000\n"
+"PO-Revision-Date: 2019-06-06 06:39+0000\n"
+"Last-Translator: admin <mantas.dainys@globalusprojektai.lt>\n"
+"Language-Team: Lietuvių kalba\n"
+"Language: lt_LT\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 "
+"&&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: lt_LT\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Parser: loco_parse_po\n"
+"X-Loco-Target-Locale: lt_LT\n"
+"X-Loco-Version: 2.2.2; wp-5.1.1"
+
+#. Name of the theme
+msgid "Luxurious"
+msgstr ""
+
+#. Description of the theme
+msgid "Uikit Frimework."
+msgstr ""
+
+#. URI of the theme
+msgid "#"
+msgstr ""
+
+#. Author of the theme
+msgid "Mantas Dainys"
+msgstr ""
+
+#. Author URI of the theme
+msgid "http://www.luxurious.lt"
+msgstr ""
+
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr "Atsiprašome, tačiau nieko neradome, pagal pateiktą užklausą"
+
+msgid "Reply"
+msgstr "Atsakyti"
+
+msgid "Do you have any questions? Write to us"
+msgstr "Turite klausimų? Parašykite mums"
+
+msgid "More information"
+msgstr "Daugiau informacijos"
+
+msgid "Our friends"
+msgstr "Mūsų draugai"
+
+msgid "We invite you to visit"
+msgstr "Kviečiame apsilankyti"
+
+msgid "All News"
+msgstr "Visos naujienos"
+
+msgid "Older posts"
+msgstr "Ankstesnis"
+
+msgid "Newer posts"
+msgstr "Sekantis"
+
+msgid "Search Results for"
+msgstr "Paieškos rezultatai"
+
+msgid "Register"
+msgstr "Rezervuokite paslaugą"
+
+msgid "Search Results for: %s"
+msgstr "Paieškos rezultatai pagal užklausą: %s"
+
+msgid "Search"
+msgstr "Ieškoti"
+
+msgid "All rights reserved"
+msgstr "Visos teisės saugomos"
+
+msgid "No results found."
+msgstr "Rezultatų nerasta"
+
+msgid "SEARCH RESULTS FOR"
+msgstr "Rezultatai"
+
+msgid "No Responses to"
+msgstr "Komentarų nėra puslapyje - "
+
+msgid "Submit Comment"
+msgstr "Siųsti atsiliepimą"
+
+msgid "Leave a Reply"
+msgstr "Palikite atsiliepimą apie mus"
+
+msgid "One Response to"
+msgstr "Yra vienas komentaras puslapyje - "
+
+msgid "% Responses to"
+msgstr "% atsiliepimų puslapyje - "
+
+msgid "Leave a Reply to %s"
+msgstr "Atsakyti į %s komentarą"
+
+msgid "Tags"
+msgstr "Žymos"

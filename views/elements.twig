@@ -1,0 +1,46 @@
+{% macro avatar(post, more, date) %}
+    <div class="uk-clearfix uk-width-1-1">
+        {%- if more -%}
+            <div class="more-line uk-float-right">
+                <a href="{{ post.link }}" class="author-more" title="{{ post.title }}"> PLAČIAU</a>
+            </div>
+        {%- endif -%}
+        {%- if date -%}
+            <div class="more-line uk-float-right">
+                <a href="/{{ post.post_date|date('Y/m/d') }}"
+                   title="{{ post.title }}"
+                   class="new-date-horizontal">{{ post.post_date|date('Y F') }} {{ post.post_date|date('d') }} d.</a>
+            </div>
+        {%- endif -%}
+    </div>
+{% endmacro %}
+
+{% macro column(posts, tag, col) %}
+    <ul class="uk-flex uk-child-width-1-{{ col|default(3) }}@m" uk-grid>
+        {%- for post in posts -%}
+            {% include 'tease.twig' with {'tag':tag|default('h2')} %}
+        {%- endfor -%}
+    </ul>
+
+    <div class="tool-pagination">
+        {% if posts.pagination.prev %}
+            <a href="{{ posts.pagination.prev.link }}"
+               class="prev {{ posts.pagination.prev.link|length ? '' : 'invisible' }}">Prev</a>
+        {% endif %}
+        <ul class="pages">
+            {% for page in posts.pagination.pages %}
+                <li>
+                    {% if page.link %}
+                        <a href="{{ page.link }}" class="{{ page.class }}">{{ page.title }}</a>
+                    {% else %}
+                        <span class="{{ page.class }}">{{ page.title }}</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        {% if posts.pagination.next %}
+            <a href="{{ posts.pagination.next.link }}"
+               class="next {{ posts.pagination.next.link|length ? '' : 'invisible' }}">Next</a>
+        {% endif %}
+    </div>
+{% endmacro %}

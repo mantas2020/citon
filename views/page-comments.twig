@@ -1,0 +1,56 @@
+{%-	if post.password_required -%}
+	<section id="comments">
+		<div class="notice">
+			<p class="bottom">{{__('This post is password protected. Enter the password to view comments.', 'custom')}}</p>
+		</div>
+	</section>
+{%- elseif post.get_comments or 'open' == post.comment_status -%}
+    <section id="comments">
+        <ol class="commentlist">
+            {{ fn('wp_list_comments',{type:'comment'}) }}
+        </ol>
+		<div>
+			<nav id="comments">
+				<div class="paginate-comments-links">{{fn('paginate_comments_links')}}</div>
+			</nav>
+		</div>
+	</section>
+    <section id="respond">
+        {% if post.comment_status == 'open' %}
+			<div style="max-width:400px; position: relative; margin: 0 auto;">
+				<h3 class="comment_title">{{fn('comment_form_title',__('Leave a Reply','custom'), __('Leave a Reply to %s', 'custom'))}}</h3>
+				
+				<p class="cancel-comment-reply">{{fn('cancel_comment_reply_link')}}</p>
+				{% if site.comment_registration and not is_user_logged_in %}
+					<p>{{__('You must be <a href="%s">logged in</a> to post a comment.', 'custom')|format(site.site_url)}}</p>
+				{% else %}
+				<form action="{{site.url}}/wp-comments-post.php" method="post" id="commentform">
+					<fieldset class="uk-fieldset">
+                    {% if is_user_logged_in %}
+                        <p>{{__('Logged in as <a href="%s/wp-admin/profile.php">%s</a>.', 'custom')|format(site.url,current_user.display_name)}} <a href="{{site.site_url}}" title="{{__('Log out of this account', 'custom') }}">{{ __('Log out &raquo;', 'custom') }}</a></p>
+                    {% else %}
+						<div class="uk-margin">
+							<input class="uk-input" type="text" name="author" id="author" value="{{comment_author|e}}" placeholder="Jūsų vardas" />
+						</div>
+						<div class="uk-margin">
+							<input class="uk-input" type="text" name="email" id="email" value="{{comment_author_email|e}}" placeholder="Jūsų el. paštas" />
+						</div>
+                    {% endif %}
+						<div class="uk-margin">
+							<textarea name="comment" id="comment" class="uk-textarea" rows="5" placeholder="Jūsų komentaras"></textarea>
+						</div>
+						<div class="uk-margin">
+							{{fn('comment_id_fields')}}
+							{% do action( 'comment_form', post.id ) %}
+						</div>
+						<div class="uk-margin">
+							<button class="uk-button uk-button-default" type="submit" id="submit">{{__('Submit Comment','custom')|e}}</button>
+						</div>
+
+					</fieldset>
+                </form>
+				</div>
+            {% endif %}
+        {% endif %}
+    </section>
+{%- endif -%}

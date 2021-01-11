@@ -1,0 +1,21 @@
+{% extends "base.twig" %}
+{% block content %}
+    <div class="uk-container uk-margin-top uk-margin-bottom">
+        <div uk-grid>
+            <div class="uk-width-1-1@m uk-article">
+                {% if title %}
+                    <h1 class="uk-article-title"><span>{{ title }}</span></h1>
+                {% endif %}
+                {% if posts %}
+                    {% for post in posts %}
+                        {% include 'tease-article.twig' %}
+                    {% endfor %}
+                {% else %}
+                    <p>{{ __("No results found.") }}</p>
+                    <link rel="stylesheet" id="siteorigin-panels-front-css" href="/wp-content/plugins/siteorigin-panels/css/front-flex.min.css" type="text/css" media="all">
+                {% endif %}
+                {% include 'pagination.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

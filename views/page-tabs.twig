@@ -1,0 +1,70 @@
+{% extends "base.twig" %}
+    {% block main %}
+        <main>
+            <div class="uk-container default-content">
+                <div uk-grid class="uk-flex category"
+                     uk-scrollspy="target: .anim; cls:uk-animation-fade; delay: 300; repeat: true">
+                    <div class="uk-width-1-1@m uk-scrollspy-inview uk-animation-fade">
+                        <div class="uk-child-width-expand@s anim" uk-grid>
+                            <div class="uk-grid-item-match">
+                                {% include template_from_string(post.content) %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-width-1-1@m" uk-grid>
+                    <div style="width: 100%;">
+                        <ul uk-accordion>
+                            {%- for child in post.children -%}
+                                <li class="uk-open tab-style">
+                                    <a class="uk-accordion-title" href="#"><h3>{{ child.title }}</h3></a>
+                                    <div class="uk-accordion-content">
+                                        {% include template_from_string(child.post_content) %}
+                                    </div>
+                                </li>
+                            {%- endfor -%}
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="uk-width-1-1@m" uk-grid>
+                    <div style="width: 100%;">
+
+                        <hr/>
+                        {% set parent = post.parent %}
+                        <style>
+                            .uk-accordion a, .uk-accordion h2 {
+                                margin: 0 !important;
+                                padding: 0 !important;
+                            }
+
+                            .uk-accordion-title {
+                                font-size: 1px;
+                            }
+
+                            .uk-accordion-content {
+                                margin-top: 0 !important;
+                            }
+                        </style>
+                        <ul uk-accordion>
+                            {%- for child in parent.children -%}
+                                {%- if post.id != child.id -%}
+                                    <li class="uk-open">
+                                        <a class="uk-accordion-title" href="#"><h2 class="uk-text-uppercase"
+                                                                                   style="font-weight:600">{{ child.title }}</h2>
+                                        </a>
+                                        <div class="uk-accordion-content">
+                                            {% include template_from_string(child.post_excerpt|excerpt(30)) %}
+                                            <a href="{{ child.link }}" title="{{ child.title }}"
+                                               uk-icon="arrow-right"></a>
+
+                                        </div>
+                                    </li>
+                                {%- endif -%}
+                            {%- endfor -%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    {% endblock %}

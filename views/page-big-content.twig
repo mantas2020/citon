@@ -1,0 +1,6 @@
+{% extends "base.twig" %}
+{% block main %}
+    <main class="{%- if fn('is_front_page') -%} frontpage {%- endif -%}">
+        {% include template_from_string(post.content) %}
+    </main>
+{% endblock %}

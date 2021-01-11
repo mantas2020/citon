@@ -1,0 +1,46 @@
+{% extends "base.twig" %}
+{% block content %}
+    <div class="uk-container">
+        <div uk-grid class="post-content">
+            <div class="post-content">
+                <h1 class="uk-heading-line uk-text-left uk-margin-top uk-margin-bottom uk-text-uppercase">
+                    <span>{{ post.title }}</span></h1>
+                <div class="moderator">
+                    {{ elements.avatar(post, false, true) }}
+                </div>
+                {%- if post.post_type == 'attachment' -%}
+                    {%- if post.thumbnail.src -%}
+                        <div class="uk-inline-clip uk-transition-toggle uk-light uk-align-left uk-margin-remove-adjacent"
+                             tabindex="0"
+                             uk-lightbox="animation: slide">
+                            <a class="uk-inline" href="{{ post.thumbnail.src }}" data-caption="{{ post.title }}">
+                                <img class="min-100 max-500 responsive-img uk-transition-scale-up uk-transition-opaque"
+                                     src="{{ post.thumbnail.src }}" alt="{{ post.title }}"/>
+                            </a>
+                            <div class="uk-position-center">
+                                <span class="uk-transition-fade" uk-icon="icon: plus; ratio: 2"></span>
+                            </div>
+                        </div>
+                    {%- endif -%}
+                    {% include template_from_string(post.content) %}
+                {%- endif -%}
+                {%- if post.post_type == 'post' -%}
+                    {%- if post.thumbnail.src -%}
+                        <div class="uk-inline-clip uk-transition-toggle uk-light uk-align-left uk-margin-remove-adjacent"
+                             tabindex="0"
+                             uk-lightbox="animation: slide">
+                            <a class="uk-inline" href="{{ post.thumbnail.src }}" data-caption="{{ post.title }}">
+                                <img class="min-100 max-500 responsive-img uk-transition-scale-up uk-transition-opaque"
+                                     src="{{ post.thumbnail.src }}" alt="{{ post.title }}"/>
+                            </a>
+                            <div class="uk-position-center">
+                                <span class="uk-transition-fade" uk-icon="icon: plus; ratio: 2"></span>
+                            </div>
+                        </div>
+                    {%- endif -%}
+                    {% include template_from_string(post.content) %}
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+{% endblock %}

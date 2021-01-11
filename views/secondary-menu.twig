@@ -1,0 +1,51 @@
+{% block navigtion %}
+    {%- if secondary_menu and secondary_menu.name == 'secondary-menu' -%}
+        <div class="uk-navbar-right">
+            <div class="pull-right" id="two_menu" style="width:100%">
+                <div>
+                    <ul class="uk-navbar-nav uk-visible@m">
+                        {% for item in secondary_menu.items %}
+                            <li class="nav-main-item {{ item.classes|join(' ') }}">
+                                {% if item.menu_object.custom['menu-icons'] %}
+                                    <a class="nav-main-link-soc" {% if '__' in item.url %} uk-toggle="target: {{ item.url }}" {% else %}href="{{ item.link }}" {% endif %}>
+                                        {% if item.menu_object.custom['menu-icons'] %}
+                                            <i class="_mi {{ item.menu_object.custom['menu-icons']['type'] }} {{ item.menu_object.custom['menu-icons']['icon'] }}"
+                                               aria-hidden="true"></i>
+                                        {% else %}
+                                            {{ item.title }}
+                                        {% endif %}
+                                    </a>
+                                {% else %}
+                                    <a class="uk-button uk-button-text" {% if '__' in item.url %} uk-toggle="target: {{ item.url }}" {% else %}href="{{ item.link }}" {% endif %}>
+                                        {% if item.menu_object.custom['menu-icons'] %}
+                                            <i class="_mi {{ item.menu_object.custom['menu-icons']['type'] }} {{ item.menu_object.custom['menu-icons']['icon'] }}"
+                                               aria-hidden="true"></i>
+                                        {% else %}
+                                            {{ item.title }}
+                                        {% endif %}
+                                    </a>
+                                    {% if item.children %}
+                                        <div class="uk-navbar-dropdown">
+                                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                                {% for child in item.children %}
+                                                    <li class="nav-drop-item">
+                                                        <a href="{{ child.link }}">{{ child.title }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <a uk-navbar-toggle-icon href="#__search" uk-toggle
+                   class="uk-navbar-toggle uk-hidden@m uk-navbar-toggle-icon uk-icon pull-right">
+                    <svg width="40" height="20" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg"></svg>
+                </a>
+            </div>
+        </div>
+    {%- endif -%}
+{% endblock %}
